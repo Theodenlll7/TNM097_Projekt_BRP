@@ -19,10 +19,14 @@ function scaled_image = scaleImage(input_image, max_width, max_height, show_diff
     end
     
     if strcmpi(show_diff, 'show')
-        % Visa skillnaden mellan originalet och den skalade bilden
-        diff_image = imabsdiff(input_image, scaled_image);
+        % Visa originalbilden och den skalade bilden bredvid varandra
         figure;
-        imshow(diff_image);
-        title('Skillnad mellan originalet och den skalade bilden');
+        subplot(1, 2, 1);
+        imshow(input_image);
+        title('Originalbild');
+        
+        subplot(1, 2, 2);
+        imshow(scaled_image);
+        title('Skalad bild');
     end
 end
