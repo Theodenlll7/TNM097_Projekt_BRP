@@ -1,0 +1,15 @@
+function closest_image = get_closest_image(database, tile)
+    % Calculate deltaE between each image in database and the tile
+    num_images = numel(database.images);
+    deltaE = zeros(num_images, 1);
+    for i = 1:num_images
+        % Calculate deltaE between resized image and the tile
+        deltaE(i) = sqrt(sum((images{i}(:) - tile(:)).^2));
+    end
+    
+    % Find the index of the closest image
+    [~, min_idx] = min(deltaE);
+    
+    % Retrieve the closest image
+    closest_image = images{min_idx};
+end

@@ -1,0 +1,16 @@
+function [out_images] = opt_images(image, in_images, k)
+    % Perform k-means clustering on the input image
+    [~, centroids] = kmeans(image(:), k);
+    
+    % Calculate deltaE between centroids and images in the database
+   num_in_images = numel(in_images);
+    deltaE = zeros(num_in_images, k);
+    for i = 1:num_in_images
+        deltaE(i, :) = sqrt(sum((mean(in_images{i}(:)) - centroids).^2, 2));
+    end
+
+     % Sort each column of deltaE and keep track of original positions
+    [sorted, sorted_indices] = sort(deltaE);
+
+    
+end
